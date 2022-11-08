@@ -1,5 +1,5 @@
 ---
-title: Lab 5
+title: Lab 6
 ---
 
 # Math problems
