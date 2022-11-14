@@ -21,11 +21,11 @@ Download [camera package](camera_package.tgz), it is useful to do this before di
 The module should create a hotspot a few seconds after power-up, check for available networks,
 you should see the `CAR-***` network where *** is the MAC address of your module. Connect with the network:
 
-![connecting](https://user-images.githubusercontent.com/7950377/145014301-4593b8b4-04a9-4118-b98e-1ce46ceb0c2d.png)
+![connecting](imgs/cameras-wifi-1.png)
 
 If you can, it is probably a good idea to simultaneously have ethernet cable with internet connection:
 
-![two connections](https://user-images.githubusercontent.com/7950377/145014456-175ca87b-0bc7-495f-9e96-cf0c39fc5ac8.png)
+![two connections](imgs/cameras-wifi-1.png)
 
 If you are unable to connect ethernet you will not be able to use internet and the camera at the same time.
 You will need to switch wifi networks back and forth.
