@@ -4,7 +4,8 @@ title: Lab 4
 
 # General info
 
-During this lab we are going to perform pose estimation of calibration patterns we have already printed. We could do it with any object with known dimensions, so feel free to experiment.
+During this lab we are going to perform pose estimation of calibration patterns we have already printed.
+We could do it with any object with physically known and detectable features (like marker or chessboard corners), so feel free to experiment.
 
 The task is similar to already known techniques from lab 3.
 
@@ -171,13 +172,13 @@ As parameters it takes:
 * cameraMatrix estimated by `cv2.calibrateCamera`
 * distCoeffs estimated by `cv2.calibrateCamera`
 
-In fact, we have already used `cv2.solvePnP` in lab6, it was disguised as `cv2.estimatePoseSingleMarkers`, but actually it was just solveP4P from four corners of a marker.
+In fact, we have already used `cv2.solvePnP` in lab3, it was disguised as `cv2.estimatePoseSingleMarkers`, but actually it was just solveP4P from four corners of a marker.
     
-During the last lab we have estimated cameraMatrix and distCoeffs of our cameras. We can find a chessboard corners on the image using `cv2.findChessboardCorners` function. We also know our chessboard object measurements.
+During the last lab we have estimated cameraMatrix and distCoeffs of our cameras. We can find chessboard corners on the image using `cv2.findChessboardCorners` function. We also know our chessboard object measurements.
 
 **Task 2 of 4**
 
-Using `cv2.solvePnP` and `cv2.projectPoints` (projects 3D points to 2D image, refer to lab6) write a program that draws 
+Using `cv2.solvePnP` and `cv2.projectPoints` (projects 3D points to 2D image, refer to lab3) write a program that draws 
 3D coordinate system with (0,0,0) at one corner of the chessboard with X, Y and Z axes as on image below:
 
 ![Data](/imgs/pnp_1.png)
@@ -215,4 +216,4 @@ Sometimes the data points may be noisy what can lead to poor results in pose est
 Compare your results with `cv.solvePnPRansac`. Check:
 - accuracy (with your own eyes or against original, not disturbed data)
 - running speed
-- check against different RANCAS parameters
+- check against different RANSAC parameters
