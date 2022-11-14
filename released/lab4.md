@@ -52,7 +52,7 @@ plt.plot(x, res.intercept + res.slope*x, 'r', label='fitted line')
 plt.legend()
 ```
 
-![Data](/imgs/ransac_1.png)
+![Data](imgs/ransac_1.png)
 
 As we can see linear regression from stats package found a line that tries to fit both the data and the noise.
 
@@ -102,7 +102,7 @@ We could use it  with following parameters:
 
 In our solution results are following:
 
-![Data](/imgs/ransac_2.png)
+![Data](imgs/ransac_2.png)
 
 As we can see algorithm is able to overcome `95%` of noise.
 
@@ -181,7 +181,7 @@ During the last lab we have estimated cameraMatrix and distCoeffs of our cameras
 Using `cv2.solvePnP` and `cv2.projectPoints` (projects 3D points to 2D image, refer to lab3) write a program that draws 
 3D coordinate system with (0,0,0) at one corner of the chessboard with X, Y and Z axes as on image below:
 
-![Data](/imgs/pnp_1.png)
+![Data](imgs/pnp_1.png)
 
 You can use following code for drawing axes
 ```python
@@ -200,7 +200,7 @@ def draw(img, corners, imgpts):
 
 Sometimes the data points may be noisy what can lead to poor results in pose estimation like on the image below:
 
-![Data](/imgs/pnp_2.png)
+![Data](imgs/pnp_2.png)
 
 ## Tasks:
 
