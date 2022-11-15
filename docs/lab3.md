@@ -84,6 +84,7 @@ Check (with your eyes) if the quality is ok.
 Using functions:
 
 - `cv2.findChessboardCorners` - finding chessboard corners (returns series of floats)
+  - Please note that parameter `patternSize` expects number of corners between checkers, e.g. 5x8 with 6x9 checkerboard
 - `cv2.cornerSubPix` -  more exact corner positions
 - `cv2.drawChessboardCorners` - drawing chessboard corners on the image
 
