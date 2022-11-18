@@ -91,11 +91,11 @@ Using functions:
 write a second program, that takes a folder of pictures, finds chessboard in every picture, and either draws the chessboard or reports that it could not find one.
 
 Function `cv2.cornerSubPix` expects five parameters:
-- image
-- corners detected by `findChessboardCorners`
-- half of the side length of the search window (we suggest `(11,11)`)
-- half of the size of the dead region in the middle of the search zone (we suggest `(-1, -1)` meaning no zone)
-- criteria for termination of the iterative process of corner refinement (we suggest: `criteria = (cv2.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)`)
+- image, note that it is required for the image to be single channel, so conversion using `cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)` is necessary,
+- corners detected by `findChessboardCorners`,
+- half of the side length of the search window (we suggest `(11,11)`),
+- half of the size of the dead region in the middle of the search zone (we suggest `(-1, -1)` meaning no zone),
+- criteria for termination of the iterative process of corner refinement (we suggest: `criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)`).
 
 
 Example output:
@@ -114,6 +114,7 @@ For example for 30mm chessboard pattern and 5x4 checkers it could look like `(0,
 In this example the unit we used for `objpoints` was millimeters.
 Note that if we have 5x4 checkers we have 4x3 intersection corners between checkers,
 so with our 6x9 calibration checkerboard you should generate 40 object points.
+Also, `objpoints` should have type `np.float32` (the default of `np.float64` will not work).
 
 
 # Undistorted video
@@ -124,7 +125,7 @@ However it is much faster to compute the undistortion and rectification transfor
 these maps multiple times with `cv2.remap`.
 
 Take a look at `cv2.initUndistortRectifyMap()` documentation for mathematical details.
-As a reminder from lab6 `cv2.getOptimalNewCameraMatrix()` can be useful and `alpha` parameter should be chosen so that desired behaviour is achieved.
+As a reminder from lab2 `cv2.getOptimalNewCameraMatrix()` can be useful and `alpha` parameter should be chosen so that desired behaviour is achieved.
 Decide if it is better to retain all pixels or work with filled field of view.
 
 Write a program that captures images and shows both distorted (original) and undistorted images side-by-side (or one above the other).

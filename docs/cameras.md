@@ -15,6 +15,8 @@ To repeat the most important thing from the video: **be absolutely sure you conn
 # Downloading "driver" code
 
 Download [camera package](camera_package.tgz), it is useful to do this before disconnecting from the internet.
+It is also worth setting up virtual environment to run the code, as it requires installing opencv and hence
+requires internet access.
 
 # Connecting to the board
 
