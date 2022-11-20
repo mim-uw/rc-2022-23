@@ -1,3 +1,12 @@
+# Updates
+
+The task was updated on Nov 20 with the following changes introduced:
+* submission details presented,
+* sample images added,
+* **Important**: SuperGlue replaced with SIFT+FLANN, because we have checked that SuperGlue does not produce good enough results for our use case.
+
+Note: you can check the history of github repository for exact changes.
+
 # Submission format
 
 **The submission deadline is Dec 5 (Monday), 8:00am.**
@@ -23,6 +32,12 @@ Take two photos and undistort them. There should be a rather big overlap (60% is
 **Note:** It is enough to generate undistorted images without any extra added (black) pixels,
 i.e. you can use `alpha=0` in
 [cv2.getOptimalNewCameraMatrix()](https://docs.opencv.org/4.6.0/d9/d0c/group__calib3d.html#ga7a6c4e032c97f03ba747966e6ad862b1).
+
+**Note2:** Provided cameras on default quality of 9 have very little distortion.
+This means that successful calibration process should return parameters which will modify the image only very slighly during undistortion.
+It is entirely possible to make images worse by "undistorting" using parametrs from poorly performed calibration,
+which results in making the images more distorted.
+Make sure (by verifying if straight line appear straight) that your undistorted images aren't worse than originals!
 
 ## Task 2 (1 point)
 
@@ -67,6 +82,8 @@ Coordinates should be quite accurate — up to a single pixel.
 You can do this for example by displaying an image in `cv2.imshow()` or `plt.imshow()`
 and zooming in so that single pixels are big enough to distinguish their coordinates.
 
+![Screenshot_20221120_194114](https://user-images.githubusercontent.com/7950377/202919946-5829822e-0095-41fd-9e70-fb979ef26397.png)
+
 Using those coordinates as a ground truth find a projective transformation between the right and the left photo using results of the previous task.
 
 ## Task 5 (3 points)
@@ -80,37 +97,72 @@ Note:
 * for not finding the full stiched image but rather some cropped version, you will lose 1 point.
 
 Sample panorama without weighted average:
-![panorama-no-weights](imgs/panorama-no-weights.jpg)
+![panorama-no-weights](imgs/panorama-no-weights.png)
 
 Sample panorama with weighted average:
-![panorama-with-weights](imgs/panorama-with-weights.jpg)
+![panorama-with-weights](imgs/panorama1.png)
 
 
 ## Task 6 (1 point)
 
 So far we have matched points on two photos by hand. We would like to automate this process.
-There are many methods of matching points on images. 
-SIFT, SURF and ORB (https://scikit-image.org/docs/stable/api/skimage.feature.html#skimage.feature.ORB) are classic feature descriptors,
-however, we want to use state of the art SuperPoint (with SuperGlue for feature matching).
 
-You are going to use the following black-box to find matches between two images.
+You can use this code to get matches:
 
-https://github.com/kciebiera/SuperGluePretrainedNetwork
+```python
+# This function is heavily inspired by an OpenCV tutorial:
+# https://docs.opencv.org/4.6.0/dc/dc3/tutorial_py_matcher.html
+#
+# You can use it as is, you do not have to understand the insides.
+# You need to pass filenames as arguments.
+# You can disable the preview with visualize=False.
+# lowe_ratio controls filtering of matches, increasing it
+# will increase number of matches, at the cost of their quality.
+#
+# Return format is a list of matches, where match is a tuple of two keypoints.
+# First keypoint designates coordinates on the first image.
+# Second one designates the same feature on the second image.
+def get_matches(filename1, filename2, visualize=True, lowe_ratio=0.6):
+    # Read images from files, convert to greyscale
+    img1 = cv2.imread(filename1, cv2.IMREAD_GRAYSCALE)
+    img2 = cv2.imread(filename2, cv2.IMREAD_GRAYSCALE)
 
-The repository comes with `./match_pairs.py` script, which allows you to easily find matches.
-Find matches on your photos using `./match_pairs.py` script from SuperGlue repo.
+    # Find the keypoints and descriptors with SIFT
+    sift = cv2.SIFT_create()
+    kp1, des1 = sift.detectAndCompute(img1, None)
+    kp2, des2 = sift.detectAndCompute(img2, None)
 
-### Hint:
+    # FLANN parameters
+    FLANN_INDEX_KDTREE = 1
+    index_params = dict(algorithm=FLANN_INDEX_KDTREE, trees=5)
+    search_params = dict(checks=50)  # or pass empty dictionary
+    flann = cv2.FlannBasedMatcher(index_params, search_params)
+    matches = flann.knnMatch(des1, des2, k=2)
+
+    # Need to draw good matches, so create a mask
+    matchesMask = [[0, 0] for i in range(len(matches))]
+
+    # Ratio test as per Lowe's paper
+    good_matches = []
+    for i, (m, n) in enumerate(matches):
+        if m.distance < lowe_ratio * n.distance:
+            matchesMask[i] = [1, 0]
+            good_matches.append((kp1[m.queryIdx].pt, kp2[m.trainIdx].pt))
+
+    if visualize:
+        draw_params = dict(
+            matchColor=(0, 255, 0),
+            singlePointColor=(0, 0, 255),
+            matchesMask=matchesMask,
+            flags=cv2.DrawMatchesFlags_DEFAULT,
+        )
+        img3 = cv2.drawMatchesKnn(img1, kp1, img2, kp2, matches, None, **draw_params)
+        cv2.imshow("vis", img3)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+
+    return good_matches
 ```
-./match_pairs.py --input_pairs pairs.txt --input_dir match_files --viz
-```
-
-`pairs.txt` should contain only one line with two names of files that are located in the `match_files` directory.
-
-Results are stored in `dump_match_pairs` directory. There should be two files in the directory: `.png` image and `.npz` both containing matches but in different formats.
-
-**We have tested SuperGlue on Ubuntu 20.04, Ubuntu 22.04, Manjaro, Arch and Mac,
-but in principle it should work on any system, GPU is not required.**
 
 ![Sample matching](imgs/img1_img2_matches.png)
 
@@ -118,29 +170,6 @@ but in principle it should work on any system, GPU is not required.**
 
 Some of the matches may be incorrect. Get rid of those matches using RANSAC with projective transformation.
 
-SuperGlue comes with a code snippet that reads matches from .npz file:
+Make panorama from two photos (like in Task 5) using an automatic matching method.
 
-```python
->>> import numpy as np
->>> path = 'dump_match_pairs/scene0711_00_frame-001680_scene0711_00_frame-001995_matches.npz'
->>> npz = np.load(path)
->>> npz.files
-['keypoints0', 'keypoints1', 'matches', 'match_confidence']
->>> npz['keypoints0'].shape
-(382, 2)
->>> npz['keypoints1'].shape
-(391, 2)
->>> npz['matches'].shape
-(382,)
->>> np.sum(npz['matches']>-1)
-115
->>> npz['match_confidence'].shape
-(382,)
-```
-
-Note: For each keypoint in `keypoints0`, the matches array indicates the index of the matching keypoint in `keypoints1`, or `-1` if the keypoint is unmatched.
-
-Find the best transformation using RANSAC.
-Make panorama from two photos (like in Task 5) using SuperGlue as a matching method.
-
-![panorama-superglue](imgs/panorama-superglue.jpg)
+![panorama-auto](imgs/panorama2.png)
