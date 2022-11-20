@@ -1,19 +1,30 @@
-Note: this scenario is graded, the details about the submission format will be given in a few days. 
+# Submission format
+
 **The submission deadline is Dec 5 (Monday), 8:00am.**
+
+You should submit via moodle:
+* a pair of images (before and after undistortion),
+* created panoramas (Task 5 and Task 7),
+* source code and instruction how to run the code.
+
+# Task description
 
 In this assignment, you should make a panorama of two photos. The method you will be using is called image stitching and it was described during Lecture 4 (you can access slides and recording on moodle).
 It is a part of this task to take your photos using the camera that was given to you during a prior lab session.
 
-Although there are multiple implementations of image stitching using different libraries (OpenCV, skimage, ...) you should implement the method using only `numpy` for computations and `matplotlib` for displaying images.
+Although there are multiple implementations of image stitching using different libraries (OpenCV, skimage, ...) you should implement the method using only `numpy` for computations and `matplotlib` or `cv2` for displaying images.
 
 You should also write your implementation of projective transformation fitting and of RANSAC (using `numpy` and `random`). Undistortion should be done using `cv2` library.
 
-# Task 1 (1 point)
+## Task 1 (1 point)
 
+Take two photos and undistort them. There should be a rather big overlap (60% is ok) between those photos. 
 
-Take two photos and un-distort them. There should be a rather big overlap (60% is ok) between those photos. 
+**Note:** It is enough to generate undistorted images without any extra added (black) pixels,
+i.e. you can use `alpha=0` in
+[cv2.getOptimalNewCameraMatrix()](https://docs.opencv.org/4.6.0/d9/d0c/group__calib3d.html#ga7a6c4e032c97f03ba747966e6ad862b1).
 
-# Task 2 (1 point)
+## Task 2 (1 point)
 
 As you remember from the lecture, one of the most important steps in image stitching is projecting all images on a common plane - this allows us to merge them into one picture.
 
@@ -28,7 +39,7 @@ Note:
 * if you don't implement nearest neighbor but rather rounding coordinates always down you get -0.25 points.
 
 
-# Task 3 (3 points)
+## Task 3 (3 points)
 
 Using `linalg.svd` write a function that finds a projective transformation based on a sequence of matching point coordinates.
 As described during the lecture this can be done by casting the problem as an instance of the 
@@ -49,11 +60,16 @@ on this homography and check that the implemented method recovers it (and repeat
 
 
 
-# Task 4 (1 point)
+## Task 4 (1 point)
 
-Find 2D coordinates of a few (five is enough) points that are visible on both photos by hand. Using those coordinates as a ground truth find a projective transformation between the right and the left photo using results of the previous task.
+Find 2D coordinates of a few (five is enough) points that are visible on both photos by hand.
+Coordinates should be quite accurate — up to a single pixel.
+You can do this for example by displaying an image in `cv2.imshow()` or `plt.imshow()`
+and zooming in so that single pixels are big enough to distinguish their coordinates.
 
-# Task 5 (3 points)
+Using those coordinates as a ground truth find a projective transformation between the right and the left photo using results of the previous task.
+
+## Task 5 (3 points)
 
 Using the projective transformation you have already found, stitch two photos into one.
 For the overlapping area use a weighted average of pixels (smoothing as described during the lecture) where the weights are proportional to the distance 
@@ -63,12 +79,19 @@ Note:
 * for not using weighted average you will lose 1 point,
 * for not finding the full stiched image but rather some cropped version, you will lose 1 point.
 
+Sample panorama without weighted average:
+![panorama-no-weights](imgs/panorama-no-weights.jpg)
 
-# Task 6 (1 point)
+Sample panorama with weighted average:
+![panorama-with-weights](imgs/panorama-with-weights.jpg)
+
+
+## Task 6 (1 point)
 
 So far we have matched points on two photos by hand. We would like to automate this process.
-There are many methods of matching points on images. SIFT, SURF and ORB (https://scikit-image.org/docs/stable/api/skimage.feature.html#skimage.feature.ORB) are commonly used. 
-However, we want to use State Of The Art: SuperGlue.
+There are many methods of matching points on images. 
+SIFT, SURF and ORB (https://scikit-image.org/docs/stable/api/skimage.feature.html#skimage.feature.ORB) are classic feature descriptors,
+however, we want to use state of the art SuperPoint (with SuperGlue for feature matching).
 
 You are going to use the following black-box to find matches between two images.
 
@@ -77,7 +100,7 @@ https://github.com/kciebiera/SuperGluePretrainedNetwork
 The repository comes with `./match_pairs.py` script, which allows you to easily find matches.
 Find matches on your photos using `./match_pairs.py` script from SuperGlue repo.
 
-## Hint:
+### Hint:
 ```
 ./match_pairs.py --input_pairs pairs.txt --input_dir match_files --viz
 ```
@@ -89,7 +112,9 @@ Results are stored in `dump_match_pairs` directory. There should be two files in
 **We have tested SuperGlue on Ubuntu 20.04, Ubuntu 22.04, Manjaro, Arch and Mac,
 but in principle it should work on any system, GPU is not required.**
 
-# Task 7 (2 points)
+![Sample matching](imgs/img1_img2_matches.png)
+
+## Task 7 (2 points)
 
 Some of the matches may be incorrect. Get rid of those matches using RANSAC with projective transformation.
 
@@ -116,4 +141,6 @@ SuperGlue comes with a code snippet that reads matches from .npz file:
 Note: For each keypoint in `keypoints0`, the matches array indicates the index of the matching keypoint in `keypoints1`, or `-1` if the keypoint is unmatched.
 
 Find the best transformation using RANSAC.
-Make panorama from two photos (like in task 6) using SuperGlue as a matching method.
+Make panorama from two photos (like in Task 5) using SuperGlue as a matching method.
+
+![panorama-superglue](imgs/panorama-superglue.jpg)
