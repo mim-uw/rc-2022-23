@@ -35,7 +35,8 @@ Last line of output should say something like `pybullet build time: Oct 11 2021 
 To check if everything works you can download hello_pybullet program:
 
 ```bash
-wget 'https://mimuw.edu.pl/~pieniacy/robot-control/pybullet/hello_pybullet.py'
+wget 'https://mimuw.edu.pl/~pieniacy/robot-control-2022-23/pybullet/hello_pybullet.py_trick'
+mv hello_pybullet.py_trick hello_pybullet.py
 chmod +x hello_pybullet.py
 ./hello_pybullet.py
 ```
@@ -48,8 +49,6 @@ Btw. `Ctrl + LMB` rotates the camera, `Ctrl + MMB` translates it and `Ctrl + RMB
 ## Step 2
 
 ### Robot definition
-
-Please note: Here we are using a different robot than during the last lab.
 
 We have the following robot description in [URDF format](http://wiki.ros.org/urdf/XML/model). Save it into a `robot.urdf` file.
 
@@ -147,9 +146,7 @@ Since all prismatic joints are invisible here is a handy animation that should h
 
 Image source: https://minecraft.fandom.com/wiki/Piston
 
-Now imagine 3 of them chained together, perpendicular to each other such that they control z, y and x.
-Fortunately, in contrast to the UR5 from the last lab, this robot has independent control over the translation axes.
-We can independently work with joints to set specific coordinate values and moving one joint does not affect the others.
+Now imagine 3 of them chained together, perpendicular to each other such that they control z, y and x. Note, that we can independently work with each joint to set specific coordinate values. Moving one joint does not affect the what happens to the others.
 
 ## Simulation
 
@@ -206,16 +203,16 @@ while True:
   time.sleep(0.01) # sometimes pybullet crashes, this line helps a lot
 ```
 
-First, explore what this robot can do. Try to correlate any behaviour you observe with our URDF file. Can our robot reach the cube as of now?
-Change the cube initial position in the python code such that it is reachable.
+First, explore what this robot can do. Try to correlate any behaviour you observe with the URDF file. Can the robot reach the cube as of now?
+Change the cube initial position in the python code so that it is reachable.
 Then try to move the cube around using the visible (and collidable) link of the robot.
-As you could notice the robot behaviour does not correctly reflect what we are setting with the sliders. There are some bugs in our URDF, we will fix it in the next step.
+As you could notice the robot behaviour does not correctly reflect what we are setting with the sliders. There are some bugs in our URDF, we will fix them in the next step.
 
 
 # Step 3
 
 Get familiar with our URDF file:
- - The `gripper_link` link is really small. Make it 6cm * 4cm * 1cm.
+ - The `gripper_link` link is currently really small (1 cm x 1 cm x 1 cm). Make it 6cm x 4cm x 1cm.
  - Fix X and Y sliders so that the robot responds correctly.
 
 
