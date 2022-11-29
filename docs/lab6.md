@@ -219,7 +219,7 @@ Get familiar with our URDF file:
 # Step 4
 
 Add four cubes in random places within the reach of the robot. Write a game with the goal of getting all the cubes close to the (x=0, y=0, z=-0.1) point. 
-Pybullet function `getBasePositionAndOrientation` can be used to get current position of cubes. Refer back to the [hello_pybullet](https://mimuw.edu.pl/~pieniacy/robot-control/pybullet/hello_pybullet.py) code as an example of getting position of an object.
+Pybullet function `getBasePositionAndOrientation` can be used to get current position of cubes. Refer back to the [hello_pybullet](https://mimuw.edu.pl/~pieniacy/robot-control-2022-23/pybullet/hello_pybullet.py_trick) code as an example of getting position of an object.
 
 ![pybullet_game](https://user-images.githubusercontent.com/7950377/138727688-9c800b10-bf2e-4d81-8805-edaf3cfae202.png)
 
