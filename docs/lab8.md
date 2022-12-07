@@ -2,6 +2,16 @@
 title: Lab 8
 ---
 
+# Updates
+
+The task was updated on Dec 7:
+
+* The testing script, `assignment_2_tests.py`, was modified to align
+ with the description of Task 1: _The red ball is placed randomly on the line segment from `[2, 0, 0]` to `[5, 0, 0]`_.
+
+There are no changes in tasks description.
+
+
 # General info
 
 **This lab is a second graded homework.** Deadline is **21th December 08:00**. At the end of this scenario you will find more details and the exact grading scheme.
