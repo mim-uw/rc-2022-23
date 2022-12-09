@@ -4,6 +4,10 @@ title: Lab 8
 
 # Updates
 
+The task 3 was updated on Dec 9:
+
+* sometimes ball is not visible from the start point of the racecar.
+
 The task was updated on Dec 7:
 
 * The testing script, `assignment_2_tests.py`, was modified to align
@@ -298,7 +302,7 @@ Rules:
 ## Task 3
 
 This time you have to move the ball through the gate. Ball is located randomly in
-`[1, -1] x [2, 1]` rectangle. Car starts in a random position on the `[4, -1] x [4, 1]` line looking at the negative x direction, so ball and gate are visible from the camera. Gate consists of two large blue cylinders in `[-2, -1]`, and `[-2, 1]` points. There are two additional green cylinders in `[-4, -1]`, and `[-4, 1]` points.
+`[1, -1] x [2, 1]` rectangle. Car starts in a random position on the `[4, -1] x [4, 1]` line looking at the negative x direction, so gate is visible from the camera. Gate consists of two large blue cylinders in `[-2, -1]`, and `[-2, 1]` points. There are two additional green cylinders in `[-4, -1]`, and `[-4, 1]` points.
 
 The bumper is designed so that the ball does not come loose from it.
 
