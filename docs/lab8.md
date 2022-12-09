@@ -301,8 +301,7 @@ Rules:
 
 ## Task 3
 
-This time you have to move the ball through the gate. Ball is located randomly in
-`[1, -1] x [2, 1]` rectangle. Car starts in a random position on the `[4, -1] x [4, 1]` line looking at the negative x direction, so gate is visible from the camera. Gate consists of two large blue cylinders in `[-2, -1]`, and `[-2, 1]` points. There are two additional green cylinders in `[-4, -1]`, and `[-4, 1]` points.
+This time you have to move the ball through the gate. The ball is randomly positioned within the rectangular region defined by the coordinates `[1, -1]` and `[2, 1]`. The car begins at a random point on the line defined by the coordinates `[4, -1]` and `[4, 1]` facing the negative x direction, allowing the gate to be seen by the camera. The gate is comprised of two large blue cylinders at the points `[-2, -1]` and `[-2, 1]`. There and two additional green cylinders at the points `[-4, -1]` and `[-4, 1]`.
 
 The bumper is designed so that the ball does not come loose from it.
 
