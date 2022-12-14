@@ -4,7 +4,9 @@ title: Lab 8
 
 # Updates
 
-The task 3 was updated on Dec 9:
+The decription of the library (`assignment_2_lib.py`) was updated on Dec 13. The function `drive` performs 250 steps instead of 100.
+
+The task 3 was updated on Dec 9:`
 
 * sometimes ball is not visible from the start point of the racecar.
 
@@ -200,7 +202,7 @@ You should be able to see a car in the world, now let's move
 - forward (True if car should move forward of False if it should move backward)
 - direction (negative number -> right, 0 -> straight, positive number -> left), although you can provide any number, wheel rotation angle will be always the same, so it's treated as if it was binary signal
 
-`drive` function is blocking and moves the car a little (100 simulation steps) in the specified direction
+`drive` function is blocking and moves the car a little (250 simulation steps) in the specified direction
 
 ![Img2](/imgs/lab8_2.png)
 
