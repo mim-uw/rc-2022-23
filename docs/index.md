@@ -6,3 +6,4 @@
 * [lab6](lab6.md)
 * [lab7](lab7.md)
 * [lab8](lab8.md)
+* [lab9](https://www.mathcha.io/editor/x0VNBcYWivrhPoWB5ytXV3BmrUonPzLru1ErDGW)
