@@ -210,7 +210,7 @@ You should be able to see a car in the world, now let's move
 Let's load a ball. The ball does not bounce, so it will fall on the ground after some time (200 simulation steps).
 
 ```python
->>> p.loadURDF("sphere2red.urdf", [2, 0, 1], globalScaling = 0.4)
+>>> p.loadURDF("sphere2red.urdf", [2, 0, 1], globalScaling = 0.3)
 2
 >>> for _ in range(200):
 ...    p.stepSimulation()
