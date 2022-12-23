@@ -1,6 +1,6 @@
 # Graded Homework 3
 
-This is a third graded homework. Deadline is 14th January 08:00.
+This is a third graded homework. Deadline is 18th January 08:00.
 At the end of this scenario you will find more details and the exact grading scheme.
 
 # General info
@@ -74,7 +74,7 @@ meaning reading both python and URDF code is meant to be a part of the assigneme
 
 Submiting will be done through the moodle page.
 You should submit just 1 file: `solution.py`. Make sure you used the provided template for compatibility with automatic grading.
-Deadline is 14th January 08:00.
+Deadline is 18th January 08:00.
 
 # Scoring
 
