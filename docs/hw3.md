@@ -3,6 +3,21 @@
 This is a third graded homework. Deadline is 18th January 08:00.
 At the end of this scenario you will find more details and the exact grading scheme.
 
+# Updates (newest first)
+
+## 28.12.2022
+
+1. Slack channel [#rc-hw3](https://machinelearni-yqf6662.slack.com/archives/C04GKAQM4CS) contains some questions and answers.
+Please join the channel so that you do not miss anything.
+
+2. There was a discrepancy between the specification on this page and a print in the code.
+The print is informational only and grading will be probably executed with `silent=True` anyway.
+The specification on this page is therefore binding, which means `res[3]` does not matter for grading and `res[2]` does.
+For clarity the code was updated to print `res[2]`:
+
+    ![image](https://user-images.githubusercontent.com/7950377/209737064-61c73c13-bc38-4ab1-ae34-74121a88c4f9.png)
+
+
 # General info
 
 In this assignment, you will be working on a classic control problem known as the cart-pole system.

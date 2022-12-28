@@ -179,7 +179,7 @@ class Simulation:
 
         if not silent:
             if ret[0]:
-                print(f"\n--- Success! ---\nSteps: {ret[1]}\nEffort: {ret[3]:.2f}\n")
+                print(f"\n--- Success! ---\nSteps: {ret[1]}\nEffort: {ret[2]:.2f}\n")
                 self.msg("SUCCESS", [0, 0.7, 0])
             else:
                 print(f"\n--- Timeout! ---\n")
