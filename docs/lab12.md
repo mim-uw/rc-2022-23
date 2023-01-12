@@ -1,5 +1,12 @@
+---
+title: Lab 12
+title:  "Lab 12"
+usemathjax: true
+date:   2023-01-12 12:00:00 +0200
+---
+
 <script type="text/javascript" id="MathJax-script" async
-   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
 
 # Lab 12
@@ -10,8 +17,11 @@ This lab serves as a basis for the theoretical part of the exam.
 
 There are 8 subproblems of this problem. You can find them in `task_1.py` file. You can run them by typing `python task_1.py <number>` where `<number>` is a number of subproblem. For instance if you want to run the first subproblem you should type `python task_1.py 1`.
 
-https://github.com/mim-ml-teaching/robot-control-teaching-materials/blob/546d19916135f9bcc4c8292a617b0cc41ccfb7ec/lab12_files/task_1.py#L1-L66
+```bash
+git clone https://github.com/mim-uw/rc-2022-23
+```
 
+All needed files are located in the `docs/lab12_files/` directory.
 
 ![](lab12_files/Figure_3.png)
 
