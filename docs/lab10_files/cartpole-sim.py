@@ -163,7 +163,7 @@ class Simulation:
             steps += 1
 
             # Check for acceptance
-            if self.stable_pos(target):
+            if self.stable_pos(target) and self.stable_angle(target):
                 print(f"Accepting {self.get_state()}")
                 return True, steps, total_effort, total_effort_sqr
 

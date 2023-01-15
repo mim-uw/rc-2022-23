@@ -5,6 +5,23 @@ At the end of this scenario you will find more details and the exact grading sch
 
 # Updates (newest first)
 
+## 10.01.2022
+
+Unfortunately, real hardware cartpole rigs presented many problems and it was impossible to make them work in time.
+Fortunately, points allocation was designed in a way that will not suffer due to this issue.
+Apologies for the situation and if machines are ready during this semester we will try to organize a demo of the system.
+
+## 09.01.2022
+
+There was a mistake in check for acceptance of the solution in that it was not checking for correct angle being set.
+It allowed to pass the tests regardless of the pole position, so in this aspect it is definitely fixed now.
+In terms of being more restrictive to pass the tests this probably does not change anything,
+because in all solutions we saw `stable_angle` comes earlier than `stable_pos`.
+Regardless, here is the change and **it will be in force for automatic grading**:
+
+![image](https://user-images.githubusercontent.com/7950377/212488835-24b0e008-4d3b-4b71-a7b2-e06c3fd25274.png)
+
+
 ## 28.12.2022
 
 1. Slack channel [#rc-hw3](https://machinelearni-yqf6662.slack.com/archives/C04GKAQM4CS) contains some questions and answers.
@@ -25,9 +42,11 @@ The goal of the assignment is to design and implement a controller for the cart-
 You will have the opportunity to apply the control theory concepts that you have learned in this course,
 as well as gain experience in implementing and testing control algorithms in a simulated environment.
 
+<s>
 In January, there will be a bonus opportunity to further demonstrate your skills by implementing your controller on real hardware.
 The first lab session of the month will be dedicated to working with these physical cart-pole machines.
 Successfully completing this bonus portion of the assignment will allow you to earn more than 100% of the total points for the assignment.
+</s>
 
 # Cart-pole problem
 
@@ -93,10 +112,10 @@ Deadline is 18th January 08:00.
 
 # Scoring
 
-Points for this task will be distributed as follows (intentionally sums to 110%):
+Points for this task will be distributed as follows <s>(intentionally sums to 110%)</s>:
 
 - 30% — Correctness of the `linearize` function, passing automated tests
 - 30% — Time optimized controller (Case 1): correct LQR reasoning, passing automated tests
 - 30% — Energy optimized controller (Case 2): correct LQR reasoning, passing automated tests
 - 10% — An overall impression (selection of methods, solutions performance, source code quality, …)
-- 10% — Successfully running your controller on the real hardware during lab10
+- <s>10% — Successfully running your controller on the real hardware during lab10</s>
