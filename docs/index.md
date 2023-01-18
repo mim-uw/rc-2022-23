@@ -8,6 +8,7 @@
 * [lab8](lab8.md)
 * [lab9](lab9.md)
 * [lab12](lab12.md)
+* [lab-pid](lab_pid.md)
 
 # Homeworks
 

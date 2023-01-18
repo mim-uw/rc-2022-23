@@ -1,0 +1,161 @@
+<?xml version="1.0" ?>
+<robot name="cartpole">
+  <!-- <<<<<<<<<<<<<<< TABLE >>>>>>>>>>>>>>> -->
+  <link name="table">
+    <inertial>
+      <mass value="0" />
+      <inertia ixx = "999" iyy = "999" izz = "999" />
+    </inertial>
+    <visual>
+      <origin xyz="0.5 0 0.5" rpy="0 0 0"/>
+      <geometry>
+        <box size="1 5 1"/>
+      </geometry>
+      <material name="light_grey"/>
+    </visual>
+  </link>
+
+
+  <!-- <<<<<<<<<<<<<<< CART >>>>>>>>>>>>>>> -->
+  <joint name="table_to_cart" type="prismatic">
+    <parent link="table"/>
+    <child link="cart"/>
+    <axis xyz="0 1 0"/>
+    <origin xyz="1 0 1.02" rpy="0 0 0"/>
+    <limit effort="99999" lower="-2.5" upper="2.5" velocity="100"/>
+  </joint>
+  <link name="cart">
+    <inertial>
+      <mass value="1" />
+      <inertia ixx = "999" iyy = "999" izz = "999" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.07 0.15 0.04"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+
+
+  <!-- <<<<<<<<<<<<<<< POLE >>>>>>>>>>>>>>> -->
+  <joint name="cart_to_pole" type="revolute">
+    <parent link="cart"/>
+    <child link="pole"/>
+    <origin xyz="0.15 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="999" lower="-1" upper="1" velocity="999"/>
+  </joint>
+  <link name="pole">
+    <inertial>
+      <origin xyz="0 0.25 0"/>
+      <mass value="0.1" />
+      <inertia ixx = "999" iyy = "999" izz = "999" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0.25 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.01 0.5 0.01"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+  </link>
+
+  <!--FR motor-->
+  <joint name="pole_to_motor" type="continuous">
+    <parent link="pole"/>
+    <child link="motor_fr"/>
+    <origin xyz="0.0 0.5 0.008" rpy="0.0 0.0 0.0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1" velocity="4200"/>
+  </joint>
+  <link name="motor_fr">
+    <inertial>
+      <mass value="0.05" />
+      <inertia ixx = "3.079166666666667e-06" ixy = "0" ixz = "0"
+               iyx = "0" iyy = "3.079166666666667e-06" iyz = "0"
+               izx = "0" izy = "0" izz = "5.625e-06" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <cylinder radius="0.014" length="0.006"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+  </link>
+
+  <!-- FR prop -->
+  <joint name="fr_to_prop" type="fixed">
+    <parent link="motor_fr"/>
+    <child link="prop_fr"/>
+    <origin xyz="0.0 0.0 0.003" rpy="0.0 0.0 0.0"/>
+  </joint>
+  <link name="prop_fr">
+    <inertial>
+      <mass value="0.01" />
+      <inertia ixx = "8.666666666666666e-08" ixy = "0" ixz = "0"
+               iyx = "0" iyy = "2.6347366666666664e-05" iyz = "0"
+               izx = "0" izy = "0" izz = "2.642736666666667e-05" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.1778 0.01 0.002"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <!-- <<<<<<<<<<<<<<< axle >>>>>>>>>>>>>>> -->
+  <joint name="cart_to_axle" type="fixed">
+    <parent link="cart"/>
+    <child link="axle"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+  </joint>
+  <link name="axle">
+    <inertial>
+      <origin xyz="0 0.25 0"/>
+      <mass value="0.01" />
+      <inertia ixx = "999" iyy = "999" izz = "999" />
+    </inertial>
+    <visual>
+      <origin xyz="0.0775 0 0" rpy="0 1.57 0"/>
+      <geometry>
+        <cylinder radius="0.005" length="0.155"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+  </link>
+
+
+  <material name="white">
+    <color rgba="1. 1. 1. 1.0"/>
+  </material>
+  <material name="black">
+    <color rgba="0. 0. 0. 1.0"/>
+  </material>
+  <material name="blue">
+    <color rgba="0.0 0.0 0.8 1.0"/>
+  </material>
+  <material name="green">
+    <color rgba="0.0 0.8 0.0 1.0"/>
+  </material>
+  <material name="grey">
+    <color rgba="0.2 0.2 0.2 1.0"/>
+  </material>
+  <material name="light_grey">
+    <color rgba="0.7 0.7 0.7 1.0"/>
+  </material>
+  <material name="orange">
+    <color rgba="1.0 0.423529411765 0.0392156862745 1.0"/>
+  </material>
+  <material name="brown">
+    <color rgba="0.870588235294 0.811764705882 0.764705882353 1.0"/>
+  </material>
+  <material name="red">
+    <color rgba="0.8 0.0 0.0 1.0"/>
+  </material>
+
+</robot>
