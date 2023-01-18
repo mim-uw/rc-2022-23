@@ -40,6 +40,26 @@ with the setpoint slider in the gui. It does not have to be very fast, reaching 
 and the system responds correctly and eventually the position is reached and held.
 Again, it does not have to be very fast.
 
+*Technical details:*
+
+1. The `pid-sim.py` file contains the `main()` function which serves as the starting point of the simulation.
+2. The `Simulation` class in the same file is responsible for managing the simulation. 
+3. The parameters for PyBullet can be adjusted in the `__init__` function of the `Simulation class`. (for instance set it to `p.DIRECT` or record a video).
+4. PIDs parameters are in the `solution.py` file and you should edit (adjust) them.
+```python
+        self.angle_pid = PID(
+            "angle", 1.5, 0.005, 100, (0, MAX_FORCE), (0, MAX_FORCE_ITERM), target
+        #            ^^^^ ^^^^^  ^^^ - proportional, integral, derivative gain edit these
+        )
+```
+5. `SolutionAngle` class in the `solution.py` defines the PID controller for the angle, while the `SolutionPosition` class defines the PID controller for the position. 
+6. The `update()` function in the PID class saves data to CSV files with columns:
+    - `iter` - step
+    - `P`, `I`, `D` - parameters of the controller
+    - `out` - output of the controller
+    - `input` - current position
+    - `setpoint` - expected position
+
 Here is a basic guide to PID tuning:
 1. Start with a small value for the proportional gain (P) and gradually increase it
 until the system starts responding to the setpoint changes. The goal is to find the point at which the system starts oscillating.
