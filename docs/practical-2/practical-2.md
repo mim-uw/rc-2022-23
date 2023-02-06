@@ -80,3 +80,16 @@ Remember, however, that your final solution will be graded based on the list of 
     - the `getBasePositionAndOrientation`, which allows you to get the pose of the filler
     - the `setJointMotorControl2` and its `maxVelocity` and `force` parameters when working on your solution
 
+
+## Running the code
+
+Tested on the MIMUW lab machines:
+
+```bash
+git clone https://github.com/mim-uw/rc-2022-23 &&
+cd rc-2022-23/docs/practical-2/files/ &&
+python3 -m venv venv &&
+. venv/bin/activate &&
+pip install numpy pybullet &&
+./task_2.py
+```
