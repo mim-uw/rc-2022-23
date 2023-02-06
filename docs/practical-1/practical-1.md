@@ -6,6 +6,15 @@ title: Exam 2023 Practical 1
 
 This task is worth 15 points, submit through the moodle.
 
+## Guidelines
+
+1. Each subtask is assigned a weight of 25% in terms of points.
+2. All answers must be submitted in a single python script file (.py)
+3. Your name should be added at the start of the file.
+4. If you use any libraries that are not part of the standard Python libraries, you must include a comment explaining this at the start of the file.
+
+## Problem
+
 You are given two photos
 
 ![](frame-002.png)
@@ -22,7 +31,7 @@ cameraMatrix, distCoeffs, _, _ = pickle.load(f)
 
 Both: `cameraMatrix` and `distCoeffs` are numpy arrays in format accepted by OpenCV.
 
-# Tasks
+# Subtasks
 
 1. There is an arucoboard in the first image. Detect it and draw markers using `drawDetectedMarkers` function, squareLength is equal 0.026 while markerLength is equal 0.015.
 2. Using drawFrameAxes function or similar, draw the coordinate system of every detected marker.
@@ -37,5 +46,3 @@ rot = [[ 1.576368  ]
        [ 0.89579336]]
 ```
 Draw the missing marker (blue color) on the second image using given pose.
-
-Every task is worth 25% of points.
