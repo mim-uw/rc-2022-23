@@ -1,3 +1,7 @@
+---
+title: Exam 2023 Practical 1
+---
+
 # Practical Task 1
 
 This task is worth 15 points, submit through the moodle.

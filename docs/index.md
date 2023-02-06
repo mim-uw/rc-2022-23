@@ -25,5 +25,5 @@
 # Exam 2023 Practical part
 
 There are 2 tasks, each is worth 15 points, submit through moodle:
-1. [Practical 1](exam_2023/practical-1/practical-1.md)
-2. [Practical 2](exam_2023/practical-2/practical-2.md)
+1. [Practical 1](practical-1/practical-1.md)
+2. [Practical 2](practical-2/practical-2.md)
