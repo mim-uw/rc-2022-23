@@ -21,3 +21,9 @@
 
 1. [Exams 2022](exams_2022)
 2. [Additional kinematics solution](additional/robot-kinematics.pdf)
+
+# Exam 2023 Practical part
+
+There are 2 tasks, each is worth 15 points, submit through moodle:
+1. [Practical 1](exam_2023/practical-1/practical-1.md)
+2. [Practical 2](exam_2023/practical-2/practical-2.md)
