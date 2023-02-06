@@ -5,6 +5,11 @@ title: Exam 2023 Practical 1
 # Practical Task 1
 
 This task is worth 15 points, submit through the moodle.
+## Changes
+
+```
+dictionaryId = '6x6_250'
+```
 
 ## Guidelines
 
@@ -33,7 +38,7 @@ Both: `cameraMatrix` and `distCoeffs` are numpy arrays in format accepted by Ope
 
 # Subtasks
 
-1. There is an arucoboard in the first image. Detect it and draw markers using `drawDetectedMarkers` function, squareLength is equal 0.026 while markerLength is equal 0.015.
+1. There is an arucoboard in the first image. Detect it and draw markers using `drawDetectedMarkers` function, squareLength is equal 0.026 while markerLength is equal 0.015. Dictionary id is '6x6_250'
 2. Using drawFrameAxes function or similar, draw the coordinate system of every detected marker.
 3. Find the pose of the marker one (1) on the first image.
 4. Pose of the marker one (1) on the second image is equal to:
