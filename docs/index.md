@@ -27,4 +27,4 @@
 There are 2 tasks, each is worth 15 points, submit through moodle:
 1. [Practical 1](practical-1/practical-1.md)
 2. [Practical 2](practical-2/practical-2.md)
-3. [Practical 3](practical-2/practical_3.md)
+3. [Practical 3](practical_3.md)
